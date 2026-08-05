@@ -1,0 +1,14 @@
+OVERALL: PASS
+
+per metric:
+  sharpe: pass
+  cagr: pass
+  max_dd: pass
+  calmar: pass
+  decay: pass
+
+sharpe = +2.159
+cagr   = +2.11%
+max_dd = -0.30%
+calmar = +7.09
+decay  = +1.37

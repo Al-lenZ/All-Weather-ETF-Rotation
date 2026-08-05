@@ -1,0 +1,65 @@
+# =============================================================================
+# .gitignore for public mirror of the v6 ETF-basket strategy
+# -----------------------------------------------------------------------------
+# Goal: publish enough for a reader to grasp the design and see the results,
+# but withhold (a) all data, (b) any file that touches the Ricequant API,
+# and (c) the factor-construction recipes.
+# =============================================================================
+
+# ---- OS / editor noise ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- Python bytecode & caches ----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ---- Claude Code local config ----
+.claude/
+
+# ---- Environments / credentials (defense in depth) ----
+.env
+.env.*
+*.key
+*.pem
+credentials*
+secrets*
+rqdatac.ini
+.rqdata*
+
+# ---- All raw & derived data (price history, factor cache, panels,
+#      backtest artifacts, funding, universe cache, sweeps, etc.) ----
+data/
+
+# ---- Any file that imports rqdatac / hits the Ricequant API ----
+#      (API key leakage + shows exactly which endpoints we consume)
+universe/scripts/loader_universe_v6.py
+universe/scripts/refresh_px_delta_v6.py
+factors_and_panels/scripts/compute_factors_v6.py
+hold_out_backtest/scripts/build_hold_out_doc.py
+final_report_cn/build_doc.py
+leverage/refresh_funding.py
+leverage/funding_curves.py
+leverage/report_docx.py
+
+# ---- Factor library / panel-construction recipes ----
+#      Downstream code (engines, blenders, backtests) can stay public
+#      because it operates on abstract "factor / label / panel" inputs;
+#      the exact factor definitions and label construction stay private.
+factors_and_panels/scripts/
+
+# ---- Large binary report artifacts (keep the .md source, drop the builds) ----
+#      Comment these out if you WANT the compiled reports on GitHub.
+# *.docx
+# *.pdf
+# **/figures.zip
