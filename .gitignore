@@ -41,6 +41,10 @@ rqdatac.ini
 #      backtest artifacts, funding, universe cache, sweeps, etc.) ----
 data/
 
+# ---- Production module (live-trading recipes; withhold to prevent
+#      trivial cloning of the strategy) ----
+production/
+
 # ---- Any file that imports rqdatac / hits the Ricequant API ----
 #      (API key leakage + shows exactly which endpoints we consume)
 universe/scripts/loader_universe_v6.py
